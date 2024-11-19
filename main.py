@@ -1,9 +1,8 @@
 import sys
-from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QLabel,
-    QLineEdit, QComboBox, QListWidget, QMessageBox, QWidget
-)
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QLineEdit, QPushButton, \
+    QListWidget, QMessageBox, QHBoxLayout, QComboBox, QCalendarWidget, QDateEdit
 from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
 
 
 class CarManagementSystemUI(QMainWindow):
@@ -11,6 +10,9 @@ class CarManagementSystemUI(QMainWindow):
         super().__init__()
         self.setWindowTitle("Car Management System")
         self.setGeometry(100, 100, 800, 600)
+
+        # Set a black background for the entire window
+        self.setStyleSheet("background-color: black; color: white;")
 
         # Data structures
         self.staff = []
@@ -26,7 +28,7 @@ class CarManagementSystemUI(QMainWindow):
         self.add_logo()
 
         # Section headers
-        self.layout.addWidget(QLabel("<h1>Car Management System</h1>"))
+        self.layout.addWidget(QLabel("<h1>AMBAG Rentals Car Management System</h1>"))
 
         # Staff Management
         self.add_staff_section()
@@ -39,13 +41,14 @@ class CarManagementSystemUI(QMainWindow):
     def add_logo(self):
         logo_label = QLabel()
         pixmap = QPixmap("Car Rental Logo.png")  # Replace with the path to the saved logo
-        logo_label.setPixmap(pixmap.scaled(200, 100))  # Adjust size as needed
+        logo_label.setPixmap(pixmap.scaled(200, 200))  # Adjust size as needed
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(logo_label)
 
     # STAFF SECTION
     def add_staff_section(self):
         header = QLabel("<h2>Staff Management</h2>")
+        header.setStyleSheet("color: white;")
         self.layout.addWidget(header)
 
         staff_layout = QHBoxLayout()
@@ -53,14 +56,23 @@ class CarManagementSystemUI(QMainWindow):
         # Staff input
         self.staff_input = QLineEdit()
         self.staff_input.setPlaceholderText("Enter staff name")
+        self.staff_input.setStyleSheet("""
+                background-color: #333;  /* Dark gray background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+                padding: 5px;            /* Padding inside the input box */
+                border-radius: 4px;      /* Rounded corners */
+            """)
         staff_layout.addWidget(self.staff_input)
 
         # Buttons
         add_staff_btn = QPushButton("Add Staff")
+        add_staff_btn.setStyleSheet("background-color: gray; color: white; border-radius: 5px;")
         add_staff_btn.clicked.connect(self.add_staff)
         staff_layout.addWidget(add_staff_btn)
 
         remove_staff_btn = QPushButton("Remove Staff")
+        remove_staff_btn.setStyleSheet("background-color: darkred; color: white; border-radius: 5px;")
         remove_staff_btn.clicked.connect(self.remove_staff)
         staff_layout.addWidget(remove_staff_btn)
 
@@ -68,6 +80,11 @@ class CarManagementSystemUI(QMainWindow):
 
         # Staff list
         self.staff_list = QListWidget()
+        self.staff_list.setStyleSheet("""
+                background-color: #222;  /* Slightly lighter black for the list background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+            """)
         self.layout.addWidget(self.staff_list)
 
     def add_staff(self):
@@ -100,14 +117,23 @@ class CarManagementSystemUI(QMainWindow):
         # Vehicle input
         self.vehicle_input = QLineEdit()
         self.vehicle_input.setPlaceholderText("Enter vehicle name")
+        self.vehicle_input.setStyleSheet("""
+                        background-color: #333;  /* Dark gray background */
+                        color: white;            /* White text color */
+                        border: 1px solid lightgray;  /* Light gray outline */
+                        padding: 5px;            /* Padding inside the input box */
+                        border-radius: 4px;      /* Rounded corners */
+                    """)
         vehicle_layout.addWidget(self.vehicle_input)
 
         # Buttons
         add_vehicle_btn = QPushButton("Add Vehicle")
+        add_vehicle_btn.setStyleSheet("background-color: gray; color: white; border-radius: 5px;")
         add_vehicle_btn.clicked.connect(self.add_vehicle)
         vehicle_layout.addWidget(add_vehicle_btn)
 
         remove_vehicle_btn = QPushButton("Remove Vehicle")
+        remove_vehicle_btn.setStyleSheet("background-color: darkred; color: white; border-radius: 5px;")
         remove_vehicle_btn.clicked.connect(self.remove_vehicle)
         vehicle_layout.addWidget(remove_vehicle_btn)
 
@@ -115,6 +141,11 @@ class CarManagementSystemUI(QMainWindow):
 
         # Vehicle list
         self.vehicle_list = QListWidget()
+        self.vehicle_list.setStyleSheet("""
+                background-color: #222;  /* Slightly lighter black for the list background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+            """)
         self.layout.addWidget(self.vehicle_list)
 
     def add_vehicle(self):
@@ -147,21 +178,35 @@ class CarManagementSystemUI(QMainWindow):
         # Customer input
         self.customer_input = QLineEdit()
         self.customer_input.setPlaceholderText("Enter customer name")
+        self.customer_input.setStyleSheet("""
+                background-color: #333;  /* Dark gray background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+                padding: 5px;            /* Padding inside the input box */
+                border-radius: 4px;      /* Rounded corners */
+            """)
         customer_layout.addWidget(self.customer_input)
 
         # Buttons
         add_customer_btn = QPushButton("Add Customer")
         add_customer_btn.clicked.connect(self.add_customer)
+        add_customer_btn.setStyleSheet("background-color: gray; color: white; border-radius: 5px;")
         customer_layout.addWidget(add_customer_btn)
 
         remove_customer_btn = QPushButton("Remove Customer")
         remove_customer_btn.clicked.connect(self.remove_customer)
+        remove_customer_btn.setStyleSheet("background-color: darkred; color: white; border-radius: 5px;")
         customer_layout.addWidget(remove_customer_btn)
 
         self.layout.addLayout(customer_layout)
 
         # Customer list
         self.customer_list = QListWidget()
+        self.customer_list.setStyleSheet("""
+                background-color: #222;  /* Slightly lighter black for the list background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+            """)
         self.layout.addWidget(self.customer_list)
 
     def add_customer(self):
@@ -191,34 +236,69 @@ class CarManagementSystemUI(QMainWindow):
 
         reservation_layout = QHBoxLayout()
 
+        # Calendar for date selection
+        self.date_picker = QDateEdit()
+        self.date_picker.setCalendarPopup(True)  # Enables calendar pop-up
+        self.date_picker.setStyleSheet("""
+                background-color: #333; 
+                color: white; 
+                border: 1px solid lightgray; 
+                padding: 5px; 
+                border-radius: 4px;
+            """)
+        self.date_picker.setDisplayFormat("MM-dd-yyyy")  # Format for the date
+        reservation_layout.addWidget(self.date_picker)
+
         # Dropdown for customers
         self.customer_dropdown = QComboBox()
         self.customer_dropdown.addItems(self.customers.keys())
+        self.customer_dropdown.setStyleSheet("""
+                background-color: #333;  /* Dark gray background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+                padding: 5px;            /* Padding inside the input box */
+                border-radius: 4px;      /* Rounded corners */
+            """)
         reservation_layout.addWidget(self.customer_dropdown)
 
         # Dropdown for vehicles
         self.vehicle_dropdown = QComboBox()
         self.vehicle_dropdown.addItems(self.vehicles)
+        self.vehicle_dropdown.setStyleSheet("""
+                background-color: #333; 
+                color: white; 
+                border: 1px solid lightgray; 
+                padding: 5px; 
+                border-radius: 4px;
+            """)
         reservation_layout.addWidget(self.vehicle_dropdown)
 
         # Buttons
         create_reservation_btn = QPushButton("Create Reservation")
         create_reservation_btn.clicked.connect(self.create_reservation)
+        create_reservation_btn.setStyleSheet("background-color: gray; color: white; border-radius: 5px;")
         reservation_layout.addWidget(create_reservation_btn)
 
         self.layout.addLayout(reservation_layout)
 
         # Reservation list
         self.reservation_list = QListWidget()
+        self.reservation_list.setStyleSheet("""
+                background-color: #222;  /* Slightly lighter black for the list background */
+                color: white;            /* White text color */
+                border: 1px solid lightgray;  /* Light gray outline */
+            """)
         self.layout.addWidget(self.reservation_list)
 
     def create_reservation(self):
+        # Get selected date, customer, and vehicle
+        date = self.date_picker.date().toString("yyyy-MM-dd")  # Get the selected date as a string
         customer = self.customer_dropdown.currentText()
         vehicle = self.vehicle_dropdown.currentText()
         if customer and vehicle:
             self.customers[customer]["vehicles_rented"].append(vehicle)
-            self.reservation_list.addItem(f"{customer} reserved {vehicle}")
-            QMessageBox.information(self, "Success", f"Reservation created for '{customer}' for vehicle '{vehicle}'.")
+            self.reservation_list.addItem(f"{customer} reserved {vehicle} on {date}")
+            QMessageBox.information(self, "Success", f"Reservation created for '{customer}' for vehicle '{vehicle}' on '{date}'.")
         else:
             QMessageBox.warning(self, "Error", "Please select a customer and a vehicle.")
 
