@@ -1,0 +1,24 @@
+{
+    "staff": [
+        "Brock Blanks"
+    ],
+    "vehicles": [
+        "2021 Honda Civic",
+        "2023 Toyota Corolla"
+    ],
+    "customers": {
+        "Brock Blanks": {
+            "vehicles_rented": [
+                "2021 Honda Civic"
+            ],
+            "address": "123 Pine Dr., Raleigh, NC, 27610"
+        }
+    },
+    "reservations": [
+        {
+            "customer": "Brock Blanks",
+            "vehicle": "2021 Honda Civic",
+            "date": "2024-11-20"
+        }
+    ]
+}
