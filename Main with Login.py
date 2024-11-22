@@ -113,14 +113,6 @@ class StaffSection(QWidget):
         border: 1px solid lightgray; 
         """)
         layout.addWidget(self.staff_list)
-       
-        logout_button = QPushButton("Logout")
-        logout_button.setStyleSheet("background-color: darkblue; color: white; border-radius: 5px;")
-        logout_button.clicked.connect(self.logout)
-        layout.addWidget(logout_button)
-
-    def logout(self):
-        main_window.stacked_widget.setCurrentWidget(main_window.login_widget)
 
     def add_staff(self):
         first_name = self.first_name_input.text()
@@ -645,6 +637,14 @@ class CarManagementSystemUI(QMainWindow):
         self.load_data()
 
         self.stacked_widget.setCurrentWidget(self.login_widget)
+        
+        self.logout_button = QPushButton("Logout")
+        self.logout_button.setStyleSheet("background-color: darkblue; color: white; border-radius: 5px;")
+        self.logout_button.clicked.connect(self.logout)
+        main_layout.addWidget(self.logout_button)
+
+    def logout(self):
+        main_window.stacked_widget.setCurrentWidget(main_window.login_widget)
 
     def add_logo(self, layout):
         logo_label = QLabel()
