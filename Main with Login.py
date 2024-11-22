@@ -46,21 +46,36 @@ class LoginScreen(QWidget):
         self.password_input.setStyleSheet(input_stylesheet)
         layout.addWidget(self.password_input)
 
-        login_button = QPushButton("Login")
-        login_button.clicked.connect(self.login)
+        admin_login = QPushButton("Admin Login")
+        admin_login.clicked.connect(self.admin_login)
+        layout.addWidget(admin_login)
+
+        login_button = QPushButton("Staff Login")
+        login_button.clicked.connect(self.staff_login)
         layout.addWidget(login_button)
 
         forgot_button = QPushButton("Forgot User/Password")
         forgot_button.clicked.connect(self.forgot)
         layout.addWidget(forgot_button)
 
-    def login(self):
+    def admin_login(self):
         username = self.username_input.text()
         password = self.password_input.text()
         if username == "Team6" and password == "CSC470":
             main_window.stacked_widget.setCurrentWidget(main_window.main_widget)
+
         else:
             QMessageBox.warning(self, "Error", "Invalid username or password.")
+
+    def staff_login(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+        if username == "Staff" and password == "Password":
+            main_window.stacked_widget.setCurrentWidget(main_window.main_widget)
+
+        else:
+            QMessageBox.warning(self, "Error", "Invalid username or password.")
+
 
   #Displays the error message when hitting "forgot username/password"
     def forgot(self):
